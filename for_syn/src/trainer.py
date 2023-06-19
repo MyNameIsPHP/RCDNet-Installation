@@ -11,6 +11,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import pylab
 import numpy as np
+import time 
 
 class Trainer():
     def __init__(self, args, loader, my_model, my_loss, ckp):
@@ -107,6 +108,8 @@ class Trainer():
                 eval_acc = 0
                 self.loader_test.dataset.set_scale(idx_scale)
                 tqdm_test = tqdm(self.loader_test, ncols=80)
+                time_test = 0
+                count = 0
                 for idx_img, (lr, hr, filename) in enumerate(tqdm_test):
                     filename = filename[0]
                     no_eval = (hr.nelement() == 1)
@@ -115,8 +118,15 @@ class Trainer():
                     else:
                         lr, = self.prepare(lr)
 
+                    start_time = time.time()
                     B0,ListB,ListR = self.model(lr, idx_scale)
                     sr = utility.quantize(ListB[-1], self.args.rgb_range)    # restored background at the last stage
+
+                    end_time = time.time()
+                    dur_time = end_time - start_time
+                    time_test += dur_time
+                    count += 1
+
                     save_list = [sr]
                     if not no_eval:
                         eval_acc += utility.calc_psnr(
@@ -139,6 +149,8 @@ class Trainer():
                         best[1][idx_scale] + 1
                     )
                 )
+                print('Avg. time:', time_test/count)
+
 
         self.ckp.write_log(
             'Total time: {:.2f}s\n'.format(timer_test.toc()), refresh=True
