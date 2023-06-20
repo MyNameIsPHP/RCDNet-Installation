@@ -16,7 +16,7 @@ pip install scikit-image==0.17.2 pytorch-msssim==0.2.1 scipy==1.1.0
 ## Synthetic Dataset  
 ### Synthetic datasets
 To train and evaluate the models, please download training and testing datasets (Rain100H, Rain100L, Rain1400) from 
-https://drive.google.com/file/d/1KuoSxXyTQ_ByMRPkErQlDXIGX7Q5uzuA/view?usp=sharing
+https://drive.google.com/file/d/1Q0hv7HQTT8iC5jHNb9lVrwI6yCNu1SI1/view?usp=sharing
 and place the unzipped folders into the 'for_syn/data' folder.
 
 ## Training
