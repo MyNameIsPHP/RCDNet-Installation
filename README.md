@@ -6,11 +6,12 @@ This is the installation, training and validating guide for RCDNet in the paper 
 ## Installation
 Run the script below to install (Conda):
 ```
-conda create -n rcdnet python=3.6.0
+conda create -n rcdnet python=3.6.7
 conda activate rcdnet
-conda install -y pytorch=0.4.1 cudatoolkit=10.0 torchvision -c pytorch
+conda install -y pytorch=0.4.1 cudatoolkit=9.0 torchvision -c pytorch
 conda install h5py opencv
 pip install scikit-image==0.17.2 pytorch-msssim==0.2.1 scipy==1.1.0
+pip install ipython tdqm
 ```
 
 ## Synthetic Dataset  
