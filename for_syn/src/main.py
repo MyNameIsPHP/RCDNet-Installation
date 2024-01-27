@@ -9,6 +9,8 @@ from trainer import Trainer
 import multiprocessing
 import time
 
+torch.backends.cudnn.benchmark = True
+
 def print_network(net):
     num_params = 0
     for param in net.parameters():
